@@ -1,0 +1,19 @@
+const botaoMenu = document.getElementById('menu-toggle');
+const menu = document.getElementById('menu');
+
+botaoMenu.addEventListener('click', () => {
+  const aberto = menu.classList.toggle('aberto');
+  botaoMenu.setAttribute('aria-expanded', aberto);
+  botaoMenu.setAttribute('aria-label', aberto ? 'Fechar menu' : 'Abrir menu');
+  botaoMenu.textContent = aberto ? '×' : '☰';
+});
+
+// Fecha o menu ao selecionar uma seção, especialmente em telas pequenas.
+menu.querySelectorAll('a').forEach((link) => {
+  link.addEventListener('click', () => {
+    menu.classList.remove('aberto');
+    botaoMenu.setAttribute('aria-expanded', 'false');
+    botaoMenu.setAttribute('aria-label', 'Abrir menu');
+    botaoMenu.textContent = '☰';
+  });
+});
